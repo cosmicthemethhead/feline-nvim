@@ -1,7 +1,7 @@
 local M = { }
 
 function M.update_title()
-  vim.cmd [[let &titlestring = "neovim - " . expand("%:t")]]
+  vim.opt.titlestring = "neovim - "..vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
 end
 
 return M
