@@ -24,6 +24,12 @@ local plugins = {
     end,
   },
 
+  -- Markdown
+  ["iamcco/markdown-preview.nvim"] = {
+    run = "cd app && npm install",
+    ft = "markdown",
+  },
+
   -- file managing , picker etc
   ["kyazdani42/nvim-tree.lua"] = {
     config = function()
@@ -35,7 +41,6 @@ local plugins = {
   },
 
   ["nvim-telescope/telescope.nvim"] = {
-    cmd = "Telescope",
     config = function()
       require "plugins.configs.telescope"
     end,
