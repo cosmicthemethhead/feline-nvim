@@ -1,6 +1,10 @@
 local plugins = {
   ["nvim-lua/plenary.nvim"] = { module = "plenary" },
 
+  ["lewis6991/impatient.nvim"] = { },
+
+  -- ["cosmicthemethhead/yarnline"] = { },
+
   ["wbthomason/packer.nvim"] = {
     cmd = require("core.lazy_load").packer_cmds,
     config = function()
@@ -26,6 +30,7 @@ local plugins = {
 
   -- Markdown
   ["iamcco/markdown-preview.nvim"] = {
+    event = { "Filetype markdown" },
     run = "cd app && npm install",
     ft = "markdown",
   },
@@ -47,6 +52,13 @@ local plugins = {
     setup = function()
       require("core.utils").load_mappings "telescope"
     end,
+  },
+
+  ["Saecki/crates.nvim"] = {
+    event = { "BufRead Cargo.toml" },
+    config = function()
+      require('crates').setup()
+    end
   },
 
   ["catppuccin/nvim"] = { as = "catppuccin" },
