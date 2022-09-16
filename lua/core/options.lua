@@ -17,7 +17,7 @@ opt.tabstop = 2
 -- number
 opt.number = true
 opt.relativenumber = true
-opt.numberwidth = 2
+opt.numberwidth = 4
 opt.ruler = false
 
 -- scrolling margin
@@ -32,6 +32,15 @@ opt.listchars:append "space:⋅"
 opt.showtabline = 2
 
 opt.fillchars:append { eob = ' ' }
+
+opt.signcolumn = "yes"
+opt.splitbelow = true
+opt.splitright = true
+opt.termguicolors = true
+opt.timeoutlen = 400
+opt.undofile = true
+
+g.mapleader = " "
 
 -- disable some builtin vim plugins
 local default_plugins = {
