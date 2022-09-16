@@ -84,5 +84,5 @@ vim.cmd [[
   set guicursor=n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20,a:blinkon100
 
   " set the colourscheme
-  colorscheme slate
+  colorscheme catppuccin
 ]]
