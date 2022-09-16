@@ -1,4 +1,6 @@
 local plugins = {
+  ["nvim-lua/plenary.nvim"] = { module = "plenary" },
+
   ["wbthomason/packer.nvim"] = {
     cmd = require("core.lazy_load").packer_cmds,
     config = function()
@@ -26,6 +28,19 @@ local plugins = {
   ["kyazdani42/nvim-tree.lua"] = {
     config = function()
       require "plugins.configs.nvim-tree"
+    end,
+    setup = function()
+      require("core.utils").load_mappings("nvim_tree")
+    end,
+  },
+
+  ["nvim-telescope/telescope.nvim"] = {
+    cmd = "Telescope",
+    config = function()
+      require "plugins.configs.telescope"
+    end,
+    setup = function()
+      require("core.utils").load_mappings "telescope"
     end,
   },
 
