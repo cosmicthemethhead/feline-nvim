@@ -68,6 +68,21 @@ M.general = {
   },
 }
 
+M.tabline = {
+  plugin = true,
+
+  n = {
+    ["<S-j>"] = {"<CMD>BufferLineCyclePrev<CR>", "tabline cycle prev" },
+    ["<S-k>"] = {"<CMD>BufferLineCycleNext<CR>", "tabline cycle next" },
+    ["<S-A-j>"] = {"<CMD>BufferLineMovePrev<CR>", "tabline move prev"},
+    ["<S-A-k>"] = {"<CMD>BufferLineMoveNext<CR>", "tabline move next"},
+
+    ["<S-p>"] = { "<CMD>BufferLineTogglePin<CR>", "tabline pining" },
+
+    ["<S-x>"] = {"<CMD>lua require('bufdelete').bufdelete(0)<CR>", "tab deletion"},
+  }
+}
+
 M.nvim_tree = {
   plugin = true,
 

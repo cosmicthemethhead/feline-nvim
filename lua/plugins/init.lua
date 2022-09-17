@@ -3,7 +3,11 @@ local plugins = {
 
   ["lewis6991/impatient.nvim"] = { },
 
-  -- ["cosmicthemethhead/yarnline"] = { },
+  -- ["cosmicthemethhead/yarnline"] = {
+  --   config = function()
+  --     require "yarnline"
+  --   end
+  -- },
 
   ["wbthomason/packer.nvim"] = {
     cmd = require("core.lazy_load").packer_cmds,
@@ -38,6 +42,20 @@ local plugins = {
     config = function()
       require("plugins.configs.others").gitsigns()
     end,
+  },
+
+  -- better tab deletion
+  ["famiu/bufdelete.nvim"] = { },
+
+  -- tabline
+  ["akinsho/bufferline.nvim"] = {
+    tag = "v2.*",
+    setup = function()
+      require("core.utils").load_mappings("tabline")
+    end,
+    config = function()
+      require("plugins.configs.bufferline")
+    end
   },
 
   -- Markdown
