@@ -21,15 +21,18 @@ M.general = {
     ["<C-A-DOWN>"]  = {"<NOP>", "unbind ctrl-alt-down arrow key"};
     ["<C-A-LEFT>"]  = {"<NOP>", "unbind ctrl-alt-left arrow key"};
     ["<C-A-RIGHT>"] = {"<NOP>", "unbind ctrl-altr-ight arrow key"};
-
     -- switch between windows
     ["<C-h>"] = { "<C-w>h", "window left" },
     ["<C-l>"] = { "<C-w>l", "window right" },
     ["<C-j>"] = { "<C-w>j", "window down" },
     ["<C-k>"] = { "<C-w>k", "window up" },
 
-    -- save
-    ["<C-s>"] = { "<CMD>w<CR>", "save file" },
+    -- save 
+    ["<C-s>"] = { "<CMD>lua require('core.utils').write()<CR>", "save file" },
+
+    -- removed undo/redo msgs
+    ["u"] = {"<CMD>silent undo<CR>", "undo"},
+    ["<C-r>"] = {"<CMD>silent redo<CR>", "redo"},
   },
 
   i = {

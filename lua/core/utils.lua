@@ -5,6 +5,51 @@ M.update_title = function()
   vim.opt.titlestring = "neovim - "..vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
 end
 
+M.write = function()
+  local write_msg = function(msg)
+    print("  \""..vim.fn.expand("%:t").."\": "..msg)
+  end
+
+  -- don't save in plugins and unnamed files
+  if vim.bo.buftype ~= "" or
+    vim.fn.expand("%") == ""
+  then return end
+  -- if modifiable, error log
+  if not vim.bo.modifiable then
+    write_msg("unable to save: not modifiable")
+    return
+  end
+
+  -- get the pre-save file size
+  local f = io.open(vim.fn.expand('%'), "r")
+  local f_size = f:seek("end"); f:close()
+
+  vim.cmd [[silent write]]
+
+  -- refresh to get post-save data
+  f = io.open(vim.fn.expand('%'), "r")
+  post_f_size = f:seek("end")
+
+  local size_dif = 0;
+  local w_icn = '+'
+
+  if f_size < post_f_size then
+    size_dif = post_f_size - f_size
+  elseif f_size > post_f_size then
+    size_dif = f_size - post_f_size
+    w_icn = '-'
+  end
+
+  if size_dif ~= 0 then
+    write_msg(string.format(
+      "%s%i bytes written",
+      w_icn, size_dif
+    ))
+  else
+    write_msg("No changes made")
+  end
+end
+
 M.load_config = function()
   local config = require "core.default_config"
   local chadrc_exists, chadrc = pcall(require, "custom.chadrc")
