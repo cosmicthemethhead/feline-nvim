@@ -14,7 +14,19 @@ local plugins = {
 
   ["kyazdani42/nvim-web-devicons"] = {
     config = function()
-      -- require("plugins.configs.others").devicons()
+      require("plugins.configs.devicons")
+    end,
+  },
+
+  ["nvim-treesitter/nvim-treesitter"] = {
+    module = "nvim-treesitter",
+    setup = function()
+      require("core.lazy_load").on_file_open "nvim-treesitter"
+    end,
+    cmd = require("core.lazy_load").treesitter_cmds,
+    run = ":TSUpdate",
+    config = function()
+      require "plugins.configs.treesitter"
     end,
   },
 

@@ -8,7 +8,7 @@ end
 
 local colours = {
   yellow = "#FFE9A0",
-  purple = "#87A2FB",
+  blue = "#87A2FB",
   pink = "#FFC4C4"
 }
 local prefabs = {
@@ -39,10 +39,25 @@ devicons.set_icon {
   },
 
   -- github
-  ["LICENSE"] = { icon = '' },
-  ["md"]      = { icon = '' },
+  [".gitignore"] = {
+    icon = '',
+    color = colours.pink,
+    name = ".gitignore",
+  },
+  ["LICENSE"] = {
+    icon = '',
+    color = colours.yellow,
+    name = "LICENSE",
+  },
+  ["md"] = { icon = '' },
 
-  ["bin"]     = { icon = bin },
+  ["bin"] = { icon = bin },
+
+  ["lua"] = {
+    icon = '',
+    color = colours.blue,
+    name = "lua",
+  },
 
   -- java/type script
   ["js"] = {
@@ -52,7 +67,7 @@ devicons.set_icon {
   },
   ["ts"] = {
     icon = 'ﯤ',
-    color = colours.purple,
+    color = colours.blue,
     name = "ts"
   },
 
