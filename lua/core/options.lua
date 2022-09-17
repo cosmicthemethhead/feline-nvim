@@ -17,7 +17,7 @@ opt.tabstop = 2
 -- number
 opt.number = true
 opt.relativenumber = true
-opt.numberwidth = 4
+opt.numberwidth = 3
 opt.ruler = false
 
 -- scrolling margin
@@ -49,11 +49,10 @@ local default_plugins = {
   "getscriptPlugin",
   "gzip",
   "logipat",
-  -- TODO: remove this after nvim-tree was installed
-  -- "netrw",
-  -- "netrwPlugin",
-  -- "netrwSettings",
-  -- "netrwFileHandlers",
+  "netrw",
+  "netrwPlugin",
+  "netrwSettings",
+  "netrwFileHandlers",
   "matchit",
   "tar",
   "tarPlugin",
