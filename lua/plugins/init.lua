@@ -9,6 +9,7 @@ local plugins = {
   --   end
   -- },
 
+  -- package mgr
   ["wbthomason/packer.nvim"] = {
     cmd = require("core.lazy_load").packer_cmds,
     config = function()
@@ -16,12 +17,14 @@ local plugins = {
     end,
   },
 
+  -- icons api
   ["kyazdani42/nvim-web-devicons"] = {
     config = function()
       require("plugins.configs.devicons")
     end,
   },
 
+  -- better syntax highlighting
   ["nvim-treesitter/nvim-treesitter"] = {
     module = "nvim-treesitter",
     setup = function()
@@ -44,9 +47,6 @@ local plugins = {
     end,
   },
 
-  -- better tab deletion
-  ["famiu/bufdelete.nvim"] = { },
-
   -- tabline
   ["akinsho/bufferline.nvim"] = {
     tag = "v2.*",
@@ -57,8 +57,9 @@ local plugins = {
       require("plugins.configs.bufferline")
     end
   },
+  -- better tab deletion
+  ["famiu/bufdelete.nvim"] = { },
 
-  -- Markdown
   ["iamcco/markdown-preview.nvim"] = {
     event = { "Filetype markdown" },
     run = "cd app && npm install",
@@ -75,6 +76,7 @@ local plugins = {
     end,
   },
 
+  -- fuzzy-finder
   ["nvim-telescope/telescope.nvim"] = {
     config = function()
       require "plugins.configs.telescope"
@@ -84,14 +86,20 @@ local plugins = {
     end,
   },
 
+  -- show rust crates data
   ["Saecki/crates.nvim"] = {
     event = { "BufRead Cargo.toml" },
     config = function()
-      require('crates').setup()
+      require("crates").setup()
     end
   },
 
-  ["catppuccin/nvim"] = { as = "catppuccin" },
+  ["catppuccin/nvim"] = {
+    as = "catppuccin",
+    config = function()
+      require("plugins.configs.colourschemes").catppuccin()
+    end
+  },
 }
 
 -- load all plugins
