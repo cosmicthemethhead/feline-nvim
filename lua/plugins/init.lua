@@ -1,13 +1,6 @@
 local plugins = {
   ["nvim-lua/plenary.nvim"] = { module = "plenary" },
-
   ["lewis6991/impatient.nvim"] = { },
-
-  -- ["cosmicthemethhead/yarnline"] = {
-  --   config = function()
-  --     require "yarnline"
-  --   end
-  -- },
 
   -- package mgr
   ["wbthomason/packer.nvim"] = {
@@ -91,6 +84,12 @@ local plugins = {
     event = { "BufRead Cargo.toml" },
     config = function()
       require("crates").setup()
+    end
+  },
+
+  ["norcalli/nvim-colorizer.lua"] = {
+    config = function()
+      require("colorizer").setup()
     end
   },
 
