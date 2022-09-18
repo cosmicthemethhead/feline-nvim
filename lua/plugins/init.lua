@@ -93,6 +93,16 @@ local plugins = {
     end
   },
 
+  -- completion
+  ["hrsh7th/cmp-nvim-lua"] = {
+    config = function()
+      require("plugins.configs.cmp")
+    end
+  },
+  ["christianchiarulli/nvim-cmp"] = { },
+  ["hrsh7th/cmp-buffer"] = { }, -- buffer completions
+  ["hrsh7th/cmp-path"] = { }, -- path completions
+
   ["catppuccin/nvim"] = {
     as = "catppuccin",
     config = function()

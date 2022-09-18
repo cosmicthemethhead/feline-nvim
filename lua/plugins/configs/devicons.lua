@@ -49,7 +49,7 @@ devicons.set_icon {
     color = colours.yellow,
     name = "LICENSE",
   },
-  ["md"] = { icon = '' },
+  ["md"] = { icon = '' },
 
   ["bin"] = { icon = bin },
 
