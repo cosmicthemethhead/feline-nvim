@@ -30,6 +30,16 @@ local plugins = {
     end,
   },
 
+  ["lukas-reineke/indent-blankline.nvim"] = {
+    opt = true,
+    setup = function()
+      require("core.lazy_load").on_file_open "indent-blankline.nvim"
+    end,
+    config = function()
+      require("plugins.configs.others").blankline()
+    end,
+  },
+
   ["lewis6991/gitsigns.nvim"] = {
     ft = "gitcommit",
     setup = function()
@@ -106,6 +116,7 @@ local plugins = {
   ["catppuccin/nvim"] = {
     as = "catppuccin",
     config = function()
+      vim.cmd [[ colorscheme catppuccin ]]
       require("plugins.configs.colourschemes").catppuccin()
     end
   },

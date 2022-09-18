@@ -2,6 +2,38 @@ local M = { }
 
 local load_override = require("core.utils").load_override
 
+M.blankline = function()
+  local present, blankline = pcall(require, "indent_blankline")
+
+  if not present then
+    return
+  end
+
+  local options = {
+    indentLine_enabled = 1,
+    filetype_exclude = {
+      "help",
+      "terminal",
+      "alpha",
+      "packer",
+      "lspinfo",
+      "TelescopePrompt",
+      "TelescopeResults",
+      "mason",
+      "",
+    },
+    buftype_exclude = { "terminal" },
+    show_trailing_blankline_indent = false,
+    show_first_indent_level = true,
+    space_char_blankline = " ",
+    show_current_context = true,
+    show_current_context_start = false,
+  }
+
+  options = load_override(options, "lukas-reineke/indent-blankline.nvim")
+  blankline.setup(options)
+end
+
 M.gitsigns = function()
   local present, gitsigns = pcall(require, "gitsigns")
 
