@@ -113,6 +113,14 @@ local plugins = {
   ["hrsh7th/cmp-buffer"] = { }, -- buffer completions
   ["hrsh7th/cmp-path"] = { }, -- path completions
 
+  -- misc plugins
+  ["windwp/nvim-autopairs"] = {
+    after = "nvim-cmp",
+    config = function()
+      require("plugins.configs.others").autopairs()
+    end,
+  },
+
   ["catppuccin/nvim"] = {
     as = "catppuccin",
     config = function()

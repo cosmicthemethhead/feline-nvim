@@ -38,8 +38,8 @@ local options = {
       vertical = {
         mirror = false,
       },
-      width = 0.94,
-      height = 0.94,
+      width = 0.84,
+      height = 0.84,
       preview_cutoff = 120,
     },
     file_sorter = require("telescope.sorters").get_fuzzy_file,
