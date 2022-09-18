@@ -54,6 +54,10 @@ M.general = {
 
     -- save
     ["<C-s>"] = { "<CMD>lua require('core.utils').write()<CR>", "save file" },
+
+    -- remap ins esc
+    ["jj"]    = { "<ESC>" },
+    ["<ESC>"] = { "<NOP>" },
   },
 
   v = {

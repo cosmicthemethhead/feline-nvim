@@ -90,7 +90,4 @@ end
 vim.cmd [[
   " make the cursor blink
   set guicursor=n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20,a:blinkon100
-
-  " set the colourscheme
-  colorscheme catppuccin
 ]]
