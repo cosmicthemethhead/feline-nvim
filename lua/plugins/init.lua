@@ -40,6 +40,23 @@ local plugins = {
     end,
   },
 
+  -- comment stuff
+
+  ["numToStr/Comment.nvim"] = {
+    config = function()
+      require("plugins.configs.others").comment()
+    end
+  },
+
+  ["folke/todo-comments.nvim"] = {
+    setup = function()
+      require("core.utils").load_mappings("todo")
+    end,
+    config = function()
+      require("plugins.configs.others").todo()
+    end
+  },
+
   ["lewis6991/gitsigns.nvim"] = {
     ft = "gitcommit",
     setup = function()

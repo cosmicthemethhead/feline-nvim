@@ -56,7 +56,7 @@ M.general = {
     ["<C-s>"] = { "<CMD>lua require('core.utils').write()<CR>", "save file" },
 
     -- remap ins esc
-    ["jj"]    = { "<ESC>" },
+    ["jk"]    = { "<ESC>" },
     ["<ESC>"] = { "<NOP>" },
   },
 
@@ -127,6 +127,14 @@ M.telescope = {
     -- theme switcher
     ["<leader>th"] = { "<cmd> Telescope themes <CR>", "nvchad themes" },
   },
+}
+
+M.todo = {
+  plugin = true,
+
+  n = {
+    ["<leader>ft"] = { "<CMD>TodoTelescope<CR>", "find todos" },
+  }
 }
 
 return M
