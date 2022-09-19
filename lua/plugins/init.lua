@@ -40,8 +40,25 @@ local plugins = {
     end,
   },
 
-  -- comment stuff
+  -- lsp stuff --
+  ["williamboman/mason.nvim"] = {
+    cmd = require("core.lazy_load").mason_cmds,
+    config = function()
+      require "plugins.configs.mason"
+    end,
+  },
 
+  ["neovim/nvim-lspconfig"] = {
+    opt = true,
+    setup = function()
+      require("core.lazy_load").on_file_open "nvim-lspconfig"
+    end,
+    config = function()
+      require "plugins.configs.lspconfig"
+    end,
+  },
+
+  -- comment stuff --
   ["numToStr/Comment.nvim"] = {
     config = function()
       require("plugins.configs.others").comment()
@@ -57,6 +74,7 @@ local plugins = {
     end
   },
 
+  -- git --
   ["lewis6991/gitsigns.nvim"] = {
     ft = "gitcommit",
     setup = function()
@@ -67,7 +85,7 @@ local plugins = {
     end,
   },
 
-  -- tabline
+  -- tabline --
   ["akinsho/bufferline.nvim"] = {
     tag = "v2.*",
     setup = function()
@@ -77,6 +95,7 @@ local plugins = {
       require("plugins.configs.bufferline")
     end
   },
+
   -- better tab deletion
   ["famiu/bufdelete.nvim"] = { },
 
@@ -96,7 +115,7 @@ local plugins = {
     end,
   },
 
-  -- fuzzy-finder
+  -- fuzzy-finder --
   ["nvim-telescope/telescope.nvim"] = {
     config = function()
       require "plugins.configs.telescope"
