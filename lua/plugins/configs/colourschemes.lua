@@ -1,6 +1,6 @@
 local overides = { }
 
-local telescope_overide = function(prompt_title_fg, prompt_title_bg, prompt_bg, results_bg, preview_bg)
+local telescope = function(prompt_title_fg, prompt_title_bg, prompt_bg, results_bg, preview_bg)
   vim.cmd(string.format(
     [[
       hi TelescopePromptTitle   guifg=%s guibg=%s
@@ -33,7 +33,7 @@ local telescope_overide = function(prompt_title_fg, prompt_title_bg, prompt_bg, 
 end
 
 overides.catppuccin = function()
-  telescope_overide("#6e152e", "#e072a8", "#202333", "#1a1c2b", "#171926")
+  telescope("#6e152e", "#e072a8", "#202333", "#1a1c2b", "#171926")
 end
 
 return overides

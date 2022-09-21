@@ -1,15 +1,18 @@
 local plugins = {
-  ["nvim-lua/plenary.nvim"] = { module = "plenary" },
-  ["lewis6991/impatient.nvim"] = { },
-
-  -- package mgr
+  --- utils ---
+  -- pkg mgr
   ["wbthomason/packer.nvim"] = {
     cmd = require("core.lazy_load").packer_cmds,
     config = function()
       require "plugins"
     end,
   },
+  -- util funcs used by several plugins
+  ["nvim-lua/plenary.nvim"] = { module = "plenary" },
+  -- speeds up starup time
+  ["lewis6991/impatient.nvim"] = { },
 
+  --- ui ---
   -- icons api
   ["kyazdani42/nvim-web-devicons"] = {
     config = function()
@@ -17,7 +20,71 @@ local plugins = {
     end,
   },
 
-  -- better syntax highlighting
+  --- tab/buffer ---
+  -- tabline
+  ["akinsho/bufferline.nvim"] = {
+    tag = "v2.*",
+    setup = function()
+      require("core.utils").load_mappings("tabline")
+    end,
+    config = function()
+      require("plugins.configs.bufferline")
+    end
+  },
+  -- better buffer deletion
+  ["famiu/bufdelete.nvim"] = { },
+
+  --- fuzzy finders ---
+  ["nvim-telescope/telescope.nvim"] = {
+    config = function()
+      require "plugins.configs.telescope"
+    end,
+    setup = function()
+      require("core.utils").load_mappings "telescope"
+    end,
+  },
+
+  --- file explorer ---
+  ["kyazdani42/nvim-tree.lua"] = {
+    config = function()
+      require "plugins.configs.nvim-tree"
+    end,
+    setup = function()
+      require("core.utils").load_mappings("nvim_tree")
+    end,
+  },
+
+  --- lsp stuff ---
+  -- lsp installer
+  ["williamboman/mason.nvim"] = {
+    cmd = require("core.lazy_load").mason_cmds,
+    config = function()
+      require "plugins.configs.mason"
+    end,
+  },
+  ["williamboman/mason-lspconfig.nvim"] = { },
+  -- lsp mgr
+  ["neovim/nvim-lspconfig"] = {
+    opt = true,
+    setup = function()
+      require("core.lazy_load").on_file_open "nvim-lspconfig"
+    end,
+    config = function()
+      require "plugins.configs.lspconfig"
+    end,
+  },
+
+  --- completion ---
+  ["hrsh7th/cmp-nvim-lua"] = {
+    config = function()
+      require("plugins.configs.cmp")
+    end
+  },
+  ["christianchiarulli/nvim-cmp"] = { },
+  ["hrsh7th/cmp-buffer"] = { }, -- buffer completions
+  ["hrsh7th/cmp-path"] = { }, -- path completions
+
+  --- treesitter ---
   ["nvim-treesitter/nvim-treesitter"] = {
     module = "nvim-treesitter",
     setup = function()
@@ -28,6 +95,10 @@ local plugins = {
     config = function()
       require "plugins.configs.treesitter"
     end,
+  },
+  -- colour coded parentheses
+  ["p00f/nvim-ts-rainbow"] = {
+    after = "nvim-treesitter"
   },
 
   ["lukas-reineke/indent-blankline.nvim"] = {
@@ -40,31 +111,13 @@ local plugins = {
     end,
   },
 
-  -- lsp stuff --
-  ["williamboman/mason.nvim"] = {
-    cmd = require("core.lazy_load").mason_cmds,
-    config = function()
-      require "plugins.configs.mason"
-    end,
-  },
-
-  ["neovim/nvim-lspconfig"] = {
-    opt = true,
-    setup = function()
-      require("core.lazy_load").on_file_open "nvim-lspconfig"
-    end,
-    config = function()
-      require "plugins.configs.lspconfig"
-    end,
-  },
-
-  -- comment stuff --
+  --- comment stuff ---
   ["numToStr/Comment.nvim"] = {
     config = function()
       require("plugins.configs.others").comment()
     end
   },
-
+  -- better better todo comment highlighting
   ["folke/todo-comments.nvim"] = {
     setup = function()
       require("core.utils").load_mappings("todo")
@@ -74,7 +127,8 @@ local plugins = {
     end
   },
 
-  -- git --
+  --- git ---
+  -- git dif highlighting
   ["lewis6991/gitsigns.nvim"] = {
     ft = "gitcommit",
     setup = function()
@@ -85,46 +139,13 @@ local plugins = {
     end,
   },
 
-  -- tabline --
-  ["akinsho/bufferline.nvim"] = {
-    tag = "v2.*",
-    setup = function()
-      require("core.utils").load_mappings("tabline")
-    end,
-    config = function()
-      require("plugins.configs.bufferline")
-    end
-  },
-
-  -- better tab deletion
-  ["famiu/bufdelete.nvim"] = { },
-
+  --- language specific plugins ---
+  -- mardown viewer
   ["iamcco/markdown-preview.nvim"] = {
     event = { "Filetype markdown" },
     run = "cd app && npm install",
     ft = "markdown",
   },
-
-  -- file managing , picker etc
-  ["kyazdani42/nvim-tree.lua"] = {
-    config = function()
-      require "plugins.configs.nvim-tree"
-    end,
-    setup = function()
-      require("core.utils").load_mappings("nvim_tree")
-    end,
-  },
-
-  -- fuzzy-finder --
-  ["nvim-telescope/telescope.nvim"] = {
-    config = function()
-      require "plugins.configs.telescope"
-    end,
-    setup = function()
-      require("core.utils").load_mappings "telescope"
-    end,
-  },
-
   -- show rust crates data
   ["Saecki/crates.nvim"] = {
     event = { "BufRead Cargo.toml" },
@@ -133,23 +154,7 @@ local plugins = {
     end
   },
 
-  ["norcalli/nvim-colorizer.lua"] = {
-    config = function()
-      require("colorizer").setup()
-    end
-  },
-
-  -- completion
-  ["hrsh7th/cmp-nvim-lua"] = {
-    config = function()
-      require("plugins.configs.cmp")
-    end
-  },
-  ["christianchiarulli/nvim-cmp"] = { },
-  ["hrsh7th/cmp-buffer"] = { }, -- buffer completions
-  ["hrsh7th/cmp-path"] = { }, -- path completions
-
-  -- misc plugins
+  --- editing ---
   ["windwp/nvim-autopairs"] = {
     after = "nvim-cmp",
     config = function()
@@ -157,6 +162,14 @@ local plugins = {
     end,
   },
 
+  --- colour stuff ---
+  -- colour viewer
+  ["norcalli/nvim-colorizer.lua"] = {
+    config = function()
+      require("colorizer").setup()
+    end
+  },
+  -- colourscheme
   ["catppuccin/nvim"] = {
     as = "catppuccin",
     config = function()

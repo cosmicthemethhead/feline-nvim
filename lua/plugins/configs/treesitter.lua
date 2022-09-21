@@ -17,6 +17,18 @@ local options = {
   indent = {
     enable = true,
   },
+
+  rainbow = {
+    enable = true,
+    extended_mode = true, -- enable for html tags
+    max_file_lines = 999, -- don't enable for files with more than x lines
+
+    colors = {
+      "#ffd700",
+      "#e762d6",
+      "#029df8",
+    },
+  }
 }
 
 -- check for any override
