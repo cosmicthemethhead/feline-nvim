@@ -90,7 +90,7 @@ local plugins = {
     end,
   },
   -- glsl lsp
-  ["tikhomirov/vim-glsl"] = { }
+  ["tikhomirov/vim-glsl"] = { },
 
   --- completion ---
   ["hrsh7th/cmp-nvim-lua"] = {
