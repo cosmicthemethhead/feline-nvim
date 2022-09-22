@@ -153,6 +153,10 @@ local plugins = {
       require("crates").setup()
     end
   },
+  -- latex
+  ["frabjous/knap"] = {
+    ft = "tex",
+  },
 
   --- editing ---
   ["windwp/nvim-autopairs"] = {
