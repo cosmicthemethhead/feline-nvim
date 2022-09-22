@@ -35,6 +35,10 @@ M.general = {
     ["<C-r>"] = { "<CMD>silent redo<CR>", "redo" },
 
     ["<C-/>"] = {"<CMD>noh | echo ''<CR>", "remove search"},
+
+    -- moving text
+    ["<A-j>"] = {"<CMD>m .+1<CR>", "move text down"},
+    ["<A-k>"] = {"<CMD>m .-2<CR>", "move text up"},
   },
 
   i = {
