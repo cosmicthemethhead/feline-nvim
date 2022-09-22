@@ -89,6 +89,8 @@ local plugins = {
       require "plugins.configs.lspconfig"
     end,
   },
+  -- glsl lsp
+  ["tikhomirov/vim-glsl"] = { }
 
   --- completion ---
   ["hrsh7th/cmp-nvim-lua"] = {
