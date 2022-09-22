@@ -21,6 +21,21 @@ local plugins = {
   },
   ["psliwka/vim-smoothie"] = { },
 
+  --- editing ---
+  ---- parentheses editing
+  ["kylechui/nvim-surround"] = {
+    config = function()
+      require("nvim-surround").setup()
+    end
+  },
+  -- autopairs parentheses
+  ["windwp/nvim-autopairs"] = {
+    after = "nvim-cmp",
+    config = function()
+      require("plugins.configs.others").autopairs()
+    end,
+  },
+
   --- tab/buffer ---
   -- tabline
   ["akinsho/bufferline.nvim"] = {
@@ -157,14 +172,6 @@ local plugins = {
   -- latex
   ["frabjous/knap"] = {
     ft = "tex",
-  },
-
-  --- editing ---
-  ["windwp/nvim-autopairs"] = {
-    after = "nvim-cmp",
-    config = function()
-      require("plugins.configs.others").autopairs()
-    end,
   },
 
   --- colour stuff ---

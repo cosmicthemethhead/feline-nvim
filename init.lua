@@ -1,3 +1,7 @@
+-- Insparation:
+--   NvChad             - github.com/NvChad/NvChad/
+--   christianChiarulli - github.com/christianChiarulli/nvim/
+
 --   ⣴⣶⣤⡤⠦⣤⣀⣤⠆     ⣈⣭⣿⣶⣿⣦⣼⣆
 --    ⠉⠻⢿⣿⠿⣿⣿⣶⣦⠤⠄⡠⢾⣿⣿⡿⠋⠉⠉⠻⣿⣿⡛⣦
 --          ⠈⢿⣿⣟⠦ ⣾⣿⣿⣷    ⠻⠿⢿⣿⣧⣄
