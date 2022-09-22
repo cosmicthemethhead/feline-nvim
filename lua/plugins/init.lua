@@ -19,6 +19,7 @@ local plugins = {
       require("plugins.configs.devicons")
     end,
   },
+  ["psliwka/vim-smoothie"] = { },
 
   --- tab/buffer ---
   -- tabline
