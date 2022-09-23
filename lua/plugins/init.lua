@@ -35,6 +35,14 @@ local plugins = {
       require("plugins.configs.others").autopairs()
     end,
   },
+  ["Pocco81/true-zen.nvim"] = {
+    setup = function()
+      require("core.utils").load_mappings("true_zen")
+    end,
+    config = function()
+      require("plugins.configs.true-zen")
+    end,
+  },
 
   --- tab/buffer ---
   -- tabline
@@ -70,7 +78,7 @@ local plugins = {
   --- file explorer ---
   ["kyazdani42/nvim-tree.lua"] = {
     config = function()
-      require "plugins.configs.nvim-tree"
+      require ("plugins.configs.nvim-tree")
     end,
     setup = function()
       require("core.utils").load_mappings("nvim_tree")

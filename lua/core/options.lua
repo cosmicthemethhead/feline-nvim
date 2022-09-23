@@ -1,6 +1,7 @@
 local opt = vim.opt
 local g = vim.g
 
+opt.mouse = ''                -- disable mouse
 opt.laststatus = 3            -- global statusline
 opt.title = true              -- custom term title
 opt.clipboard = "unnamedplus" -- use system clipboard

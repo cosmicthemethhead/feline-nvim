@@ -1,3 +1,4 @@
+-- NOTE: is orginized alphabeticaly
 -- n, v, i, t = mode names
 
 -- local function termcodes(str)
@@ -39,6 +40,8 @@ M.general = {
     -- moving text
     ["<A-j>"] = {"<CMD>m .+1<CR>", "move text down"},
     ["<A-k>"] = {"<CMD>m .-2<CR>", "move text up"},
+
+    ["q"] = { "<NOP>", "disable recording macro" },
   },
 
   i = {
@@ -81,19 +84,9 @@ M.general = {
 
     -- save
     ["<C-s>"] = { "<CMD>lua require('core.utils').write()<CR>", "save file" },
+
+    ["q"] = { "<NOP>", "disable recording macro" },
   },
-}
-
-M.tabline = {
-  plugin = true,
-
-  n = {
-    ["<S-j>"]   = { "<CMD>BufferLineCyclePrev<CR>", "tabline cycle prev" },
-    ["<S-k>"]   = { "<CMD>BufferLineCycleNext<CR>", "tabline cycle next" },
-    ["<S-A-j>"] = { "<CMD>BufferLineMovePrev <CR>", "tabline move prev"  },
-    ["<S-A-k>"] = { "<CMD>BufferLineMoveNext <CR>", "tabline move next"  },
-    ["<S-x>"]   = { "<CMD>lua require('bufdelete').bufdelete(0)<CR>", "tab deletion" },
-  }
 }
 
 M.lspconfig = {
@@ -236,6 +229,18 @@ M.nvim_tree = {
   },
 }
 
+M.tabline = {
+  plugin = true,
+
+  n = {
+    ["<S-j>"]   = { "<CMD>BufferLineCyclePrev<CR>", "tabline cycle prev" },
+    ["<S-k>"]   = { "<CMD>BufferLineCycleNext<CR>", "tabline cycle next" },
+    ["<S-A-j>"] = { "<CMD>BufferLineMovePrev <CR>", "tabline move prev"  },
+    ["<S-A-k>"] = { "<CMD>BufferLineMoveNext <CR>", "tabline move next"  },
+    ["<S-x>"]   = { "<CMD>lua require('bufdelete').bufdelete(0)<CR>", "tab deletion" },
+  }
+}
+
 M.telescope = {
   plugin = true,
 
@@ -266,6 +271,14 @@ M.todo = {
 
   n = {
     ["<leader>ft"] = { "<CMD>TodoTelescope<CR>", "find todos" },
+  }
+}
+
+M.true_zen = {
+  plugin = true,
+
+  n = {
+    ["<C-y>"] = { "<CMD>TZAtaraxis<CR>", "toggle zen mode" },
   }
 }
 
