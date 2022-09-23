@@ -19,9 +19,11 @@ local plugins = {
       require("plugins.configs.devicons")
     end,
   },
+  -- smooth scrolling
   ["psliwka/vim-smoothie"] = { },
 
   --- editing ---
+  ["monaqa/dial.nvim"] = { },
   ---- parentheses editing
   ["kylechui/nvim-surround"] = {
     config = function()
@@ -201,11 +203,12 @@ local plugins = {
       require("colorizer").setup()
     end
   },
+  ["nvim-colortils/colortils.nvim"] = { },
   -- colourscheme
   ["catppuccin/nvim"] = {
     as = "catppuccin",
     config = function()
-      vim.cmd [[ colorscheme catppuccin ]]
+      vim.cmd [[colorscheme catppuccin]]
       require("plugins.configs.colourschemes").catppuccin()
     end
   },

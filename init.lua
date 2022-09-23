@@ -1,6 +1,6 @@
--- Insparation:
---   NvChad             - github.com/NvChad/NvChad/
---   christianChiarulli - github.com/christianChiarulli/nvim/
+-- insparation (aka plagiarism):
+--   NvChad             - https://github.com/NvChad/NvChad/
+--   christianChiarulli - https://github.com/christianChiarulli/nvim/
 
 --   ⣴⣶⣤⡤⠦⣤⣀⣤⠆     ⣈⣭⣿⣶⣿⣦⣼⣆
 --    ⠉⠻⢿⣿⠿⣿⣿⣶⣦⠤⠄⡠⢾⣿⣿⡿⠋⠉⠉⠻⣿⣿⡛⣦
@@ -13,8 +13,8 @@
 -- ⠙⠃   ⣼⣿⡟  ⠈⠻⣿⣿⣦⣌⡇⠻⣿⣿⣷⣿⣿⣿ ⣿⣿⡇ ⠛⠻⢷⣄
 --      ⢻⣿⣿⣄   ⠈⠻⣿⣿⣿⣷⣿⣿⣿⣿⣿⡟ ⠫⢿⣿⡆
 --       ⠻⣿⣿⣿⣿⣶⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⡟⢀⣀⣤⣾⡿⠃
---
---
+
+
 --         ,.=:!!t3z.,
 --        :tt;:;tt333EE3
 --        Et;:;ztt33EEEL @Ee.,      ..,
@@ -63,3 +63,17 @@ end
 pcall(require, "custom")
 
 require("core.utils").load_mappings()
+
+vim.cmd [[
+  function! HandleURL()
+    let s:uri = matchstr(getline("."), '[a-z]*:\/\/[^ >,;]*')
+    echo s:uri
+    if s:uri != ""
+      silent exec "!xdg-open '".s:uri."'"
+    else
+      echo "No URI found in line."
+    endif
+  endfunction
+
+  map <leader>u :call HandleURL()<cr>
+]]
