@@ -87,7 +87,5 @@ for _, provider in ipairs(default_providers) do
   vim.g["loaded_" .. provider .. "_provider"] = 0
 end
 
-vim.cmd [[
-  " make the cursor blink
-  set guicursor=n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20,a:blinkon100
-]]
+-- make the cursor blink
+vim.cmd [[ set guicursor=n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20,a:blinkon100 ]]

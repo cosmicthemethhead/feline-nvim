@@ -82,11 +82,6 @@ M.general = {
     -- save
     ["<C-s>"] = { "<CMD>lua require('core.utils').write()<CR>", "save file" },
   },
-
-  c = {
-    ["ESC"] = { "<NOP>", "unbind esc key cuz it was replaced by 'jk'" },
-    ["jk"] = { "<ESC>", "easier way to exit cmd mode" },
-  }
 }
 
 M.tabline = {

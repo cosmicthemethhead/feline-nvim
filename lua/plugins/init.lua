@@ -50,7 +50,7 @@ local plugins = {
   -- better buffer deletion
   ["famiu/bufdelete.nvim"] = { },
 
-  --- fuzzy finders ---
+  --- fuzzy finder ---
   ["nvim-telescope/telescope.nvim"] = {
     config = function()
       require "plugins.configs.telescope"
@@ -58,6 +58,13 @@ local plugins = {
     setup = function()
       require("core.utils").load_mappings "telescope"
     end,
+  },
+
+  --- terminal intagration ---
+  ["akinsho/toggleterm.nvim"] = {
+    config = function()
+      require("plugins.configs.toggleterm")
+    end
   },
 
   --- file explorer ---
@@ -158,7 +165,7 @@ local plugins = {
   },
 
   --- language specific plugins ---
-  -- mardown viewer
+  -- mardown preview
   ["iamcco/markdown-preview.nvim"] = {
     event = { "Filetype markdown" },
     run = "cd app && npm install",
@@ -171,9 +178,12 @@ local plugins = {
       require("crates").setup()
     end
   },
-  -- latex
+  -- latex preview
   ["frabjous/knap"] = {
     ft = "tex",
+    config = function()
+      require("plugins.configs.knap")
+    end
   },
 
   --- colour stuff ---
