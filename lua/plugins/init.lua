@@ -87,37 +87,30 @@ local plugins = {
     end,
   },
 
-  --- lsp stuff ---
-  -- lsp installer
-  ["williamboman/mason.nvim"] = {
-    cmd = require("core.lazy_load").mason_cmds,
-    config = function()
-      require "plugins.configs.mason"
-    end,
+  ["rafamadriz/friendly-snippets"] = {
+    module = { "cmp", "cmp_nvim_lsp" },
+    event = "InsertEnter",
   },
-  ["williamboman/mason-lspconfig.nvim"] = { },
-  -- lsp mgr
-  ["neovim/nvim-lspconfig"] = {
-    opt = true,
-    setup = function()
-      require("core.lazy_load").on_file_open "nvim-lspconfig"
-    end,
-    config = function()
-      require "plugins.configs.lspconfig"
-    end,
-  },
-  -- glsl lsp
-  ["tikhomirov/vim-glsl"] = { },
 
-  --- completion ---
-  ["hrsh7th/cmp-nvim-lua"] = {
+  ["hrsh7th/nvim-cmp"] = {
+    after = "friendly-snippets",
     config = function()
-      require("plugins.configs.cmp")
-    end
+      require "plugins.configs.cmp"
+    end,
   },
-  ["christianchiarulli/nvim-cmp"] = { },
-  ["hrsh7th/cmp-buffer"] = { }, -- buffer completions
-  ["hrsh7th/cmp-path"] = { }, -- path completions
+
+  ["L3MON4D3/LuaSnip"] = {
+    wants = "friendly-snippets",
+    after = "nvim-cmp",
+    config = function()
+      require("plugins.configs.others").luasnip()
+    end,
+  },
+
+  ["saadparwaiz1/cmp_luasnip"] = { after = "LuaSnip" },
+  ["hrsh7th/cmp-nvim-lua"] = { after = "cmp_luasnip" },
+  ["hrsh7th/cmp-buffer"] = { --[[ after = "cmp-nvim-lsp" ]] },
+  ["hrsh7th/cmp-path"] = { after = "cmp-buffer" },
 
   --- treesitter ---
   ["nvim-treesitter/nvim-treesitter"] = {

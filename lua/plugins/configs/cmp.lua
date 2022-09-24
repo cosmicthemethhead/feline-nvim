@@ -85,6 +85,11 @@ cmp.setup {
       "s",
     }),
   },
+  snippet = {
+    expand = function(args)
+      require("luasnip").lsp_expand(args.body)
+    end,
+  },
   formatting = {
     fields = { "kind", "abbr", "menu" },
     format = function(entry, vim_item)
@@ -94,11 +99,13 @@ cmp.setup {
       vim_item.menu = ({
         buffer   = "[Buffer]",
         path     = "[Path]",
+        luasnip  = "[Snipets]"
       })[entry.source.name]
       return vim_item
     end,
   },
   sources = {
+    { name = "luasnip" },
     { name = "buffer" },
     { name = "path" },
   },
