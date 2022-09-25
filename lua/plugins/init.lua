@@ -19,8 +19,18 @@ local plugins = {
       require("plugins.configs.devicons")
     end,
   },
+  ["rcarriga/nvim-notify"] = {
+    config = function()
+      require("plugins.configs.others").notify()
+    end
+  },
   -- smooth scrolling
   ["psliwka/vim-smoothie"] = { },
+  ["folke/which-key.nvim"] = {
+    config = function()
+      require("which-key").setup()
+    end
+  },
 
   --- editing ---
   ["monaqa/dial.nvim"] = { },
@@ -87,18 +97,23 @@ local plugins = {
     end,
   },
 
-  ["rafamadriz/friendly-snippets"] = {
-    module = { "cmp", "cmp_nvim_lsp" },
-    event = "InsertEnter",
-  },
-
+  --- completion ---
   ["hrsh7th/nvim-cmp"] = {
     after = "friendly-snippets",
     config = function()
       require "plugins.configs.cmp"
     end,
   },
+  ["saadparwaiz1/cmp_luasnip"] = { after = "LuaSnip" },
+  ["hrsh7th/cmp-nvim-lua"] = { after = "cmp_luasnip" },
+  ["hrsh7th/cmp-buffer"] = { --[[ after = "cmp-nvim-lsp" ]] },
+  ["hrsh7th/cmp-path"] = { after = "cmp-buffer" },
 
+  --- snippet ---
+  ["rafamadriz/friendly-snippets"] = {
+    module = { "cmp", "cmp_nvim_lsp" },
+    event = "InsertEnter",
+  },
   ["L3MON4D3/LuaSnip"] = {
     wants = "friendly-snippets",
     after = "nvim-cmp",
@@ -106,11 +121,6 @@ local plugins = {
       require("plugins.configs.others").luasnip()
     end,
   },
-
-  ["saadparwaiz1/cmp_luasnip"] = { after = "LuaSnip" },
-  ["hrsh7th/cmp-nvim-lua"] = { after = "cmp_luasnip" },
-  ["hrsh7th/cmp-buffer"] = { --[[ after = "cmp-nvim-lsp" ]] },
-  ["hrsh7th/cmp-path"] = { after = "cmp-buffer" },
 
   --- treesitter ---
   ["nvim-treesitter/nvim-treesitter"] = {

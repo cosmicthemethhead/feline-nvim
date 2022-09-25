@@ -20,15 +20,20 @@ M.write = function()
     return
   end
 
-  -- get the pre-save file size
   local f = io.open(vim.fn.expand('%'), "r")
+
+  if f == nil then
+    return
+  end
+
+  -- get the pre-save file size
   local f_size = f:seek("end"); f:close()
 
   vim.cmd [[silent write]]
 
   -- refresh to get post-save data
   f = io.open(vim.fn.expand('%'), "r")
-  post_f_size = f:seek("end")
+  local post_f_size = f:seek("end")
 
   local size_dif = 0;
   local w_icn = '+'
