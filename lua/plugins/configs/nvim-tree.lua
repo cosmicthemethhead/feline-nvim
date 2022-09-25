@@ -2,7 +2,7 @@ local present, nvim_tree = pcall(require, "nvim-tree")
 
 if not present then
   vim.notify("failed to load: nvim-tree", "error", {
-    title = "plugin.config.nvim-tree",
+    title = "plugin.configs.nvim-tree",
   })
   return
 end
@@ -10,7 +10,7 @@ end
 local config_present, nvim_tree_config = pcall(require, "nvim-tree.config")
 if not config_present then
   vim.notify("failed to load: nvim-tree_config", "error", {
-    title = "plugin.config.nvim-tree_config",
+    title = "plugin.configs.nvim-tree_config",
   })
   return
 end

@@ -1,7 +1,7 @@
 local present, toggleterm = pcall(require, "toggleterm")
 if not present then
   vim.notify("failed to load: toggleterm", "error", {
-    title = "toggleterm",
+    title = "plugin.configs.toggleterm",
   })
   return
 end

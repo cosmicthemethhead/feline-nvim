@@ -2,7 +2,7 @@ local present, telescope = pcall(require, "telescope")
 
 if not present then
   vim.notify("failed to load: telescope", "error", {
-    title = "plugin.config.telescope",
+    title = "plugin.configs.telescope",
   })
   return
 end

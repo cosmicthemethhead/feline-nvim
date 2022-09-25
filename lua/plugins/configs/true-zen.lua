@@ -2,7 +2,7 @@ local present, true_zen = pcall(require, "true-zen")
 
 if not present then
   vim.notify("failed to load: true-zen", "error", {
-    title = "plugin.config.true-zen",
+    title = "plugin.configs.true-zen",
   })
   return
 end

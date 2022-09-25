@@ -1,15 +1,15 @@
 local present, devicons= pcall(require, "nvim-web-devicons")
 if not present then
   vim.notify("failed to load: devicons", "error", {
-    title = "plugins.config.devicons",
+    title = "plugins.configs.devicons",
   })
   return
 end
 
 local colours = {
   yellow = "#FFE9A0",
-  blue = "#87A2FB",
-  pink = "#FFC4C4"
+  blue   = "#87A2FB",
+  pink   = "#FFC4C4"
 }
 local prefabs = {
   img = {

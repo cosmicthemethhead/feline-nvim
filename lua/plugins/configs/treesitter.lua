@@ -1,6 +1,9 @@
 local present, treesitter = pcall(require, "nvim-treesitter.configs")
 
 if not present then
+  vim.notify("failed to load: treesitter", "error", {
+    title = "plugin.configs.treesitter",
+  })
   return
 end
 
