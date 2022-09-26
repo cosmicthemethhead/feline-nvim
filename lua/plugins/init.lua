@@ -1,6 +1,5 @@
 -- WishList:
 --  j-hui/fidget.nvim
---  petertriho/nvim-scrollbar
 --  easier movement justinmk/vim-sneak
 --- UNSPECIFIED ---
 ---  lsp
@@ -33,6 +32,12 @@ local plugins = {
   },
   -- smooth scrolling
   ["psliwka/vim-smoothie"] = { },
+  -- scrollbar that shows diagnostics & search result locations
+  ["petertriho/nvim-scrollbar"] = {
+    config = function()
+      require("scrollbar").setup()
+    end
+  },
   -- helps me remember keymaps
   ["folke/which-key.nvim"] = {
     config = function()
@@ -57,6 +62,7 @@ local plugins = {
       require("plugins.configs.others").autopairs()
     end,
   },
+  -- zen mode
   ["Pocco81/true-zen.nvim"] = {
     setup = function()
       require("core.utils").load_mappings("true_zen")
