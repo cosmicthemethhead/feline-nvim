@@ -2,6 +2,7 @@
 --   NvChad             - https://github.com/NvChad/NvChad/
 --   christianChiarulli - https://github.com/christianChiarulli/nvim/
 
+
 --   ⣴⣶⣤⡤⠦⣤⣀⣤⠆     ⣈⣭⣿⣶⣿⣦⣼⣆
 --    ⠉⠻⢿⣿⠿⣿⣿⣶⣦⠤⠄⡠⢾⣿⣿⡿⠋⠉⠉⠻⣿⣿⡛⣦
 --          ⠈⢿⣿⣟⠦ ⣾⣿⣿⣷    ⠻⠿⢿⣿⣧⣄
@@ -13,7 +14,6 @@
 -- ⠙⠃   ⣼⣿⡟  ⠈⠻⣿⣿⣦⣌⡇⠻⣿⣿⣷⣿⣿⣿ ⣿⣿⡇ ⠛⠻⢷⣄
 --      ⢻⣿⣿⣄   ⠈⠻⣿⣿⣿⣷⣿⣿⣿⣿⣿⡟ ⠫⢿⣿⡆
 --       ⠻⣿⣿⣿⣿⣶⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⡟⢀⣀⣤⣾⡿⠃
-
 
 --         ,.=:!!t3z.,
 --        :tt;:;tt333EE3
@@ -66,12 +66,12 @@ require("core.utils").load_mappings()
 
 vim.cmd [[
   function! HandleURL()
-    let s:uri = matchstr(getline("."), '[a-z]*:\/\/[^ >,;]*')
-    echo s:uri
-    if s:uri != ""
-      silent exec "!xdg-open '".s:uri."'"
+    let s:url = matchstr(getline("."), '[a-z]*:\/\/[^ >,;]*')
+    echo s:url
+    if s:url != ""
+      silent exec "!xdg-open '".s:url."'"
     else
-      echo "No URI found in line."
+      echo "No URL found in line."
     endif
   endfunction
 

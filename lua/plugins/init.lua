@@ -1,3 +1,10 @@
+-- WishList:
+--  j-hui/fidget.nvim
+--  petertriho/nvim-scrollbar
+--  easier movement justinmk/vim-sneak
+--- UNSPECIFIED ---
+---  lsp
+
 local plugins = {
   --- utils ---
   -- pkg mgr
@@ -26,6 +33,7 @@ local plugins = {
   },
   -- smooth scrolling
   ["psliwka/vim-smoothie"] = { },
+  -- helps me remember keymaps
   ["folke/which-key.nvim"] = {
     config = function()
       require("which-key").setup()
@@ -34,6 +42,8 @@ local plugins = {
 
   --- editing ---
   ["monaqa/dial.nvim"] = { },
+  -- better searching
+  ["junegunn/vim-slash"] = { },
   ---- parentheses editing
   ["kylechui/nvim-surround"] = {
     config = function()
@@ -105,9 +115,9 @@ local plugins = {
     end,
   },
   ["saadparwaiz1/cmp_luasnip"] = { after = "LuaSnip" },
-  ["hrsh7th/cmp-nvim-lua"] = { after = "cmp_luasnip" },
-  ["hrsh7th/cmp-buffer"] = { --[[ after = "cmp-nvim-lsp" ]] },
-  ["hrsh7th/cmp-path"] = { after = "cmp-buffer" },
+  ["hrsh7th/cmp-nvim-lua"]     = { after = "cmp_luasnip" },
+  ["hrsh7th/cmp-buffer"]       = { --[[ after = "cmp-nvim-lsp" ]] },
+  ["hrsh7th/cmp-path"]         = { after = "cmp-buffer" },
 
   --- snippet ---
   ["rafamadriz/friendly-snippets"] = {
@@ -151,6 +161,7 @@ local plugins = {
 
   --- comment stuff ---
   ["numToStr/Comment.nvim"] = {
+    branch = "master",
     config = function()
       require("plugins.configs.others").comment()
     end
@@ -195,7 +206,14 @@ local plugins = {
   ["frabjous/knap"] = {
     ft = "tex",
     config = function()
-      require("plugins.configs.knap")
+      vim.cmd [[
+        let g:knap_settings = {
+          "htmltohtmlviewerlaunch": "live-server --quiet --browser=firefox --open=%outputfile% --watch=%outputfile% --wait=800",
+          "htmltohtmlviewerrefresh": "none",
+          "mdtohtmlviewerlaunch": "live-server --quiet --browser=firefox --open=%outputfile% --watch=%outputfile% --wait=800",
+          "mdtohtmlviewerrefresh": "none",
+        \ }
+      ]]
     end
   },
 
@@ -207,11 +225,12 @@ local plugins = {
     end
   },
   ["nvim-colortils/colortils.nvim"] = { },
-  -- colourscheme
+
+  --- colourscheme ---
   ["catppuccin/nvim"] = {
     as = "catppuccin",
     config = function()
-      vim.cmd [[colorscheme catppuccin]]
+      vim.cmd [[ colorscheme catppuccin ]]
       require("plugins.configs.colourschemes").catppuccin()
     end
   },

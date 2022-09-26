@@ -123,6 +123,7 @@ M.luasnip = function()
   })
 end
 
+-- BUG: fix some colour stuff
 M.todo = function()
   local present, todo = pcall(require, "todo-comments")
 

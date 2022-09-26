@@ -1,7 +1,8 @@
-local cmp_status_ok, cmp = pcall(require, "cmp")
-if not cmp_status_ok then
+local cmp_present, cmp = pcall(require, "cmp")
+
+if not cmp_present then
   vim.notify("failed to load: cmp", "error", {
-    title = "cmp",
+    title = "plugins.configs.cmp",
   })
   return
 end
@@ -12,6 +13,7 @@ local check_backspace = function()
 end
 
 --   פּ ﯟ   some other good icons
+-- find more here: https://www.nerdfonts.com/cheat-sheet
 local kind_icons = {
   Text          = '',
   Method        = '',
@@ -31,7 +33,7 @@ local kind_icons = {
   Color         = '',
   File          = '',
   Reference     = '',
-  Folder        = '',
+  Folder        = '',
   EnumMember    = '',
   Constant      = '',
   Struct        = '',
@@ -39,9 +41,9 @@ local kind_icons = {
   Operator      = '',
   TypeParameter = '',
 }
--- find more here: https://www.nerdfonts.com/cheat-sheet
 
 cmp.setup {
+  -- TODO: add luasnip keymaps
   mapping = {
       ["<C-k>"] = cmp.mapping.select_prev_item(),
       ["<C-j>"] = cmp.mapping.select_next_item(),
@@ -53,6 +55,7 @@ cmp.setup {
       i = cmp.mapping.abort(),
       c = cmp.mapping.close(),
     },
+
     -- Accept currently selected item. If none selected, `select` first item.
     -- Set `select` to `false` to only confirm explicitly selected items.
     ['<CR>'] = cmp.mapping.confirm { select = true },
@@ -72,6 +75,7 @@ cmp.setup {
       "i",
       "s",
     }),
+
     ["<S-Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
@@ -85,13 +89,16 @@ cmp.setup {
       "s",
     }),
   },
+
   snippet = {
     expand = function(args)
       require("luasnip").lsp_expand(args.body)
     end,
   },
+
   formatting = {
     fields = { "kind", "abbr", "menu" },
+
     format = function(entry, vim_item)
       -- Kind icons
       vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
@@ -101,22 +108,27 @@ cmp.setup {
         path     = "[Path]",
         luasnip  = "[Snipets]"
       })[entry.source.name]
+
       return vim_item
     end,
   },
+
   sources = {
     { name = "luasnip" },
     { name = "buffer" },
     { name = "path" },
   },
+
   confirm_opts = {
     behavior = cmp.ConfirmBehavior.Replace,
     select = false,
   },
+
   experimental = {
     ghost_text = true,
     native_menu = false,
   },
+
   completion = {
     completeopt = 'menu,menuone,noinsert'
   }
