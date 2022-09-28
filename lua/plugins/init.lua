@@ -1,8 +1,6 @@
 -- WishList:
---  j-hui/fidget.nvim
---  easier movement justinmk/vim-sneak
---- UNSPECIFIED ---
----  lsp
+--  translator: potamides/pantran.nvim
+--  easier movement: justinmk/vim-sneak
 
 local plugins = {
   --- utils ---
@@ -25,6 +23,13 @@ local plugins = {
       require("plugins.configs.devicons")
     end,
   },
+  -- lsp info ui
+  ["j-hui/fidget.nvim"] = {
+    config = function()
+      require("plugins.configs.others").fidget()
+    end
+  },
+  -- better notification ui
   ["rcarriga/nvim-notify"] = {
     config = function()
       require("plugins.configs.others").notify()
@@ -122,7 +127,8 @@ local plugins = {
   },
   ["saadparwaiz1/cmp_luasnip"] = { after = "LuaSnip" },
   ["hrsh7th/cmp-nvim-lua"]     = { after = "cmp_luasnip" },
-  ["hrsh7th/cmp-buffer"]       = { --[[ after = "cmp-nvim-lsp" ]] },
+  ["hrsh7th/cmp-nvim-lsp"]     = { after = "cmp-nvim-lua" },
+  ["hrsh7th/cmp-buffer"]       = { after = "cmp-nvim-lsp" },
   ["hrsh7th/cmp-path"]         = { after = "cmp-buffer" },
 
   --- snippet ---
@@ -136,6 +142,27 @@ local plugins = {
     config = function()
       require("plugins.configs.others").luasnip()
     end,
+  },
+
+  --- lsp ---
+  ["neovim/nvim-lspconfig"] = {
+    wants = "mason-lspconfig.nvim",
+    after = "mason-lspconfig.nvim",
+    config = function()
+      require "plugins.configs.lspconfig"
+    end
+  },
+  ["williamboman/mason-lspconfig.nvim"] = {
+    after = "mason.nvim",
+    config = function()
+      require("mason-lspconfig").setup()
+    end
+  },
+  -- lsp installer
+  ["williamboman/mason.nvim"] = {
+    config = function()
+      require "plugins.configs.mason"
+    end
   },
 
   --- treesitter ---
@@ -233,13 +260,14 @@ local plugins = {
   ["nvim-colortils/colortils.nvim"] = { },
 
   --- colourscheme ---
-  ["catppuccin/nvim"] = {
-    as = "catppuccin",
-    config = function()
-      vim.cmd [[ colorscheme catppuccin ]]
-      require("plugins.configs.colourschemes").catppuccin()
-    end
-  },
+  ["folke/tokyonight.nvim"] = { },
+  -- ["catppuccin/nvim"] = {
+  --   as = "catppuccin",
+  --   config = function()
+  --     vim.cmd [[ colorscheme catppuccin ]]
+  --     require("plugins.configs.colourschemes").catppuccin()
+  --   end
+  -- },
 }
 
 -- load all plugins
