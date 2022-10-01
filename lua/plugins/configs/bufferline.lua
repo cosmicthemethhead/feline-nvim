@@ -27,6 +27,7 @@ bufferline.setup {
         text = " neo-vim",
         text_align = "center",
         separator = false,
+        padding = 1
       }
     },
 
