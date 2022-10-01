@@ -25,9 +25,44 @@ end
 
 handlers.capabilities = vim.lsp.protocol.make_client_capabilities()
 
+handlers.capabilities.textDocument.completion.completionItem = {
+  documentationFormat = { "markdown", "plaintext" },
+  snippetSupport = true,
+  preselectSupport = true,
+  insertReplaceSupport = true,
+  labelDetailsSupport = true,
+  deprecatedSupport = true,
+  commitCharactersSupport = true,
+  tagSupport = { valueSet = { 1 } },
+  resolveSupport = {
+    properties = {
+      "documentation",
+      "detail",
+      "additionalTextEdits",
+    },
+  },
+}
+
+local config = {
+  update_in_insert = true,
+  underline = true,
+  severity_sort = true,
+}
+
+vim.diagnostic.config(config)
+
 local servers = {
   "sumneko_lua",
   "rust_analyzer",
+  "texlab",
+  "clangd",
+  "cssls",
+  "cssmodules_ls",
+  "tailwindcss",
+  "emmet_ls",
+  "html",
+  "tsserver",
+  "svelte"
 }
 
 mason_lspconfig.setup {
@@ -42,6 +77,21 @@ for _, server in pairs(servers) do
     on_attach    = handlers.on_attach,
     capabilities = handlers.capabilities,
   }
+
+  if server == "sumneko_lua" then
+    local sumneko_lua_opts = require("plugins.server_opts.sumneko_lua")
+    opts = vim.tbl_deep_extend("force", sumneko_lua_opts, opts)
+  end
+
+  if server == "tsserver" then
+    local tsserver_opts = require "plugins.server_opts.tsserver"
+    opts = vim.tbl_deep_extend("force", tsserver_opts, opts)
+  end
+
+  if server == "emmet_ls" then
+    local emmet_ls_opts = require "plugins.server_opts.emmet_ls"
+    opts = vim.tbl_deep_extend("force", emmet_ls_opts, opts)
+  end
 
   server = vim.split(server, "@")[1]
   lspconfig[server].setup(opts)
