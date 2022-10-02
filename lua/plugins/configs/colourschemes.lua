@@ -33,6 +33,14 @@ local telescope = function(prompt_title_fg, prompt_title_bg, prompt_bg, results_
 end
 
 overides.tokyonight = function()
+  vim.cmd [[
+  try
+    colorscheme tokyonight
+  catch
+    colorscheme slate
+    echo "WARNING: tokyonight not found"
+  ]]
+
   telescope("#6e152e", "#e072a8", "#202333", "#1a1c2b", "#171926")
 end
 
