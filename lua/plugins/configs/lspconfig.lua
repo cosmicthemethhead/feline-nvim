@@ -58,11 +58,9 @@ local servers = {
   "clangd",
   "cssls",
   "cssmodules_ls",
-  "tailwindcss",
   "emmet_ls",
   "html",
   "tsserver",
-  "svelte"
 }
 
 mason_lspconfig.setup {
