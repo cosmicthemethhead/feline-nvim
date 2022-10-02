@@ -25,6 +25,7 @@ local plugins = {
   },
   -- lsp info ui
   ["j-hui/fidget.nvim"] = {
+    wants = "nvim-lspconfig",
     config = function()
       require("plugins.configs.others").fidget()
     end
@@ -93,11 +94,11 @@ local plugins = {
 
   --- fuzzy finder ---
   ["nvim-telescope/telescope.nvim"] = {
-    config = function()
-      require "plugins.configs.telescope"
-    end,
     setup = function()
       require("core.utils").load_mappings "telescope"
+    end,
+    config = function()
+      require "plugins.configs.telescope"
     end,
   },
 
@@ -236,38 +237,22 @@ local plugins = {
     end
   },
   -- latex preview
-  ["frabjous/knap"] = {
-    ft = "tex",
-    config = function()
-      vim.cmd [[
-        let g:knap_settings = {
-          "htmltohtmlviewerlaunch": "live-server --quiet --browser=firefox --open=%outputfile% --watch=%outputfile% --wait=800",
-          "htmltohtmlviewerrefresh": "none",
-          "mdtohtmlviewerlaunch": "live-server --quiet --browser=firefox --open=%outputfile% --watch=%outputfile% --wait=800",
-          "mdtohtmlviewerrefresh": "none",
-        \ }
-      ]]
-    end
-  },
+  ["frabjous/knap"] = { ft = "tex", },
 
   --- colour stuff ---
   -- colour viewer
   ["norcalli/nvim-colorizer.lua"] = {
+    setup = function()
+      require("core.lazy_load").on_file_open "nvim-colorizer.lua"
+    end,
     config = function()
-      require("colorizer").setup()
+      require("plugins.configs.others").colorizer()
     end
   },
   ["nvim-colortils/colortils.nvim"] = { },
 
   --- colourscheme ---
   ["folke/tokyonight.nvim"] = { },
-  -- ["catppuccin/nvim"] = {
-  --   as = "catppuccin",
-  --   config = function()
-  --     vim.cmd [[ colorscheme catppuccin ]]
-  --     require("plugins.configs.colourschemes").catppuccin()
-  --   end
-  -- },
 }
 
 -- load all plugins

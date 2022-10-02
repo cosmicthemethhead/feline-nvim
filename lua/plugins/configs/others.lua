@@ -55,6 +55,32 @@ M.blankline = function()
   blankline.setup(options)
 end
 
+M.colorizer = function()
+  local present, colorizer = pcall(require, "colorizer")
+
+  if not present then
+    return
+  end
+
+  local web_opts = {
+    RGB      = true;
+    RRGGBB   = true;
+    names    = true;
+    RRGGBBAA = true;
+    rgb_fn   = true;
+    hsl_fn   = true;
+    css      = true;
+    css_fn   = true;
+  }
+
+  local opts = {
+    css = web_opts
+  }
+
+  opts = load_override(opts, "norcalli/nvim-colorizer.lua")
+  colorizer.setup(opts)
+end
+
 M.comment = function()
   local present, nvim_comment = pcall(require, "Comment")
 
