@@ -144,12 +144,4 @@ M.todo = {
   }
 }
 
-M.true_zen = {
-  plugin = true,
-
-  n = {
-    ["<C-y>"] = { "<CMD>TZAtaraxis<CR>", "toggle zen mode" },
-  }
-}
-
 return M

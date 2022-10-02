@@ -73,15 +73,6 @@ local plugins = {
       require("nvim-surround").setup()
     end
   },
-  -- zen mode
-  ["Pocco81/true-zen.nvim"] = {
-    setup = function()
-      require("core.utils").load_mappings("true_zen")
-    end,
-    config = function()
-      require("plugins.configs.true-zen")
-    end,
-  },
   ["RRethy/vim-illuminate"] = {
     config = function()
       require('illuminate').configure()
