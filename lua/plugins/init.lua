@@ -16,6 +16,11 @@ local plugins = {
   -- speeds up starup time
   ["lewis6991/impatient.nvim"] = { },
 
+  --- syntax ---
+  ["tikhomirov/vim-glsl"] = {
+    ft = "glsl",
+  },
+
   --- ui ---
   -- icons api
   ["kyazdani42/nvim-web-devicons"] = {
