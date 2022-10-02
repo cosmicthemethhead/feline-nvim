@@ -82,6 +82,11 @@ local plugins = {
       require("plugins.configs.true-zen")
     end,
   },
+  ["RRethy/vim-illuminate"] = {
+    config = function()
+      require('illuminate').configure()
+    end
+  },
 
   --- tab/buffer ---
   -- tabline
