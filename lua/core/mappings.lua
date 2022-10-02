@@ -38,9 +38,10 @@ M.general = {
     ["<C-/>"] = {"<CMD>noh | echo ''<CR>", "remove search"},
 
     -- moving text
-    ["<A-j>"] = {"<CMD>m .+1<CR>", "move text down"},
-    ["<A-k>"] = {"<CMD>m .-2<CR>", "move text up"},
+    ["<A-j>"] = { "<CMD>m .+1<CR>", "move text down" },
+    ["<A-k>"] = { "<CMD>m .-2<CR>", "move text up" },
 
+    ["<SPACE>"] = { "<NOP>", "disable recording macro" },
     ["q"] = { "<NOP>", "disable recording macro" },
   },
 
