@@ -16,11 +16,6 @@ local plugins = {
   -- speeds up starup time
   ["lewis6991/impatient.nvim"] = { },
 
-  --- syntax ---
-  ["tikhomirov/vim-glsl"] = {
-    ft = "glsl",
-  },
-
   --- ui ---
   -- icons api
   ["kyazdani42/nvim-web-devicons"] = {
@@ -32,13 +27,13 @@ local plugins = {
   ["j-hui/fidget.nvim"] = {
     wants = "nvim-lspconfig",
     config = function()
-      require("plugins.configs.others").fidget()
+      require("plugins.configs._ui").fidget()
     end
   },
   -- better notification ui
   ["rcarriga/nvim-notify"] = {
     config = function()
-      require("plugins.configs.others").notify()
+      require("plugins.configs._ui").notify()
     end
   },
   -- smooth scrolling
@@ -56,8 +51,20 @@ local plugins = {
     end
   },
 
+  --- syntax ---
+  ["tikhomirov/vim-glsl"] = {
+    ft = "glsl",
+  },
+
   --- editing ---
   ["monaqa/dial.nvim"] = { },
+  -- autopairs parentheses
+  ["windwp/nvim-autopairs"] = {
+    after = "nvim-cmp",
+    config = function()
+      require("plugins.configs._editing").autopairs()
+    end,
+  },
   -- better searching
   ["junegunn/vim-slash"] = { },
   ---- parentheses editing
@@ -65,13 +72,6 @@ local plugins = {
     config = function()
       require("nvim-surround").setup()
     end
-  },
-  -- autopairs parentheses
-  ["windwp/nvim-autopairs"] = {
-    after = "nvim-cmp",
-    config = function()
-      require("plugins.configs.others").autopairs()
-    end,
   },
   -- zen mode
   ["Pocco81/true-zen.nvim"] = {
@@ -151,7 +151,7 @@ local plugins = {
     wants = "friendly-snippets",
     after = "nvim-cmp",
     config = function()
-      require("plugins.configs.others").luasnip()
+      require("plugins.configs._misc").luasnip()
     end,
   },
 
@@ -193,13 +193,14 @@ local plugins = {
     after = "nvim-treesitter"
   },
 
+  --- indentation ---
   ["lukas-reineke/indent-blankline.nvim"] = {
     opt = true,
     setup = function()
       require("core.lazy_load").on_file_open "indent-blankline.nvim"
     end,
     config = function()
-      require("plugins.configs.others").blankline()
+      require("plugins.configs._misc").blankline()
     end,
   },
 
@@ -207,7 +208,7 @@ local plugins = {
   ["numToStr/Comment.nvim"] = {
     branch = "master",
     config = function()
-      require("plugins.configs.others").comment()
+      require("plugins.configs._comment").comment()
     end
   },
   -- better better todo comment highlighting
@@ -216,7 +217,7 @@ local plugins = {
       require("core.utils").load_mappings("todo")
     end,
     config = function()
-      require("plugins.configs.others").todo()
+      require("plugins.configs._comment").todo()
     end
   },
 
@@ -228,7 +229,7 @@ local plugins = {
       require("core.lazy_load").gitsigns()
     end,
     config = function()
-      require("plugins.configs.others").gitsigns()
+      require("plugins.configs._misc").gitsigns()
     end,
   },
 
@@ -256,7 +257,7 @@ local plugins = {
       require("core.lazy_load").on_file_open "nvim-colorizer.lua"
     end,
     config = function()
-      require("plugins.configs.others").colorizer()
+      require("plugins.configs._misc").colorizer()
     end
   },
   ["nvim-colortils/colortils.nvim"] = { },
@@ -275,7 +276,7 @@ if present then
   plugins = require("core.utils").merge_plugins(plugins)
 
   -- load packer init options
-  local init_options = require("plugins.configs.others").packer_init()
+  local init_options = require("plugins.configs._misc").packer_init()
   init_options = require("core.utils").load_override(init_options, "wbthomason/packer.nvim")
   packer.init(init_options)
 

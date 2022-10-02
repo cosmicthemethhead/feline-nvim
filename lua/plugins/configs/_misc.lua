@@ -1,26 +1,5 @@
 local M = { }
-
 local load_override = require("core.utils").load_override
-
-M.autopairs = function()
-  local present_a, autopairs = pcall(require, "nvim-autopairs")
-  local present_c, cmp = pcall(require, "cmp")
-
-  if not (present_a and present_c) then
-    return
-  end
-
-  local options = {
-    fast_wrap = {},
-    disable_filetype = { "TelescopePrompt", "vim" },
-  }
-
-  options = load_override(options, "windwp/nvim-autopairs")
-  autopairs.setup(options)
-
-  local cmp_autopairs = require "nvim-autopairs.completion.cmp"
-  cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
-end
 
 M.blankline = function()
   local present, blankline = pcall(require, "indent_blankline")
@@ -81,36 +60,6 @@ M.colorizer = function()
   colorizer.setup(opts)
 end
 
-M.comment = function()
-  local present, nvim_comment = pcall(require, "Comment")
-
-  if not present then
-    return
-  end
-
-  local opts = {}
-  opts = load_override(opts, "numToStr/Comment.nvim")
-  nvim_comment.setup(opts)
-end
-
-M.fidget = function()
-  local present, fidget = pcall(require, "fidget")
-
-  if not present then
-    return
-  end
-
-  local opts = {
-    text = {
-      done = '',
-      spinner = "dots",
-    },
-  }
-
-  opts = load_override(opts, "j-hui/fidget.nvim")
-  fidget.setup(opts)
-end
-
 M.gitsigns = function()
   local present, gitsigns = pcall(require, "gitsigns")
 
@@ -161,33 +110,6 @@ M.luasnip = function()
   })
 end
 
-M.notify = function()
-  local present, notify = pcall(require, "notify")
-
-  if not present then
-    return
-  end
-
-  local opts = {
-    fps = 60,
-    icons = {
-      DEBUG = "",
-      ERROR = "",
-      INFO = "",
-      TRACE = "✎",
-      WARN = ""
-    },
-    render = "simple",
-    stages = "slide",
-    minimum_width = 50,
-    maximum_width = 70,
-  }
-
-  opts = load_override(opts, "rcarriga/nvim-notify")
-  notify.setup(opts)
-  vim.notify = require("notify")
-end
-
 M.packer_init = function()
   return {
     display = {
@@ -205,38 +127,6 @@ M.packer_init = function()
       end,
     },
   }
-end
-
--- FIXME: fix some colour stuff
-M.todo = function()
-  local present, todo = pcall(require, "todo-comments")
-
-  if not present then
-    return
-  end
-
-  vim.cmd [[ hi clear TODO ]]
-
-  local opts = {
-    signs = false, -- show icons in the signs column
-
-    -- keywords recognized as todo comments
-    keywords = {
-      FIX =  { icon = " ", color = "error", alt = { "FIXME", "BUG", "FIXIT", "ISSUE" } },
-      TODO = { icon = " ", color = "info" },
-      HACK = { icon = " ", color = "warning" },
-      WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
-      PERF = { icon = "祥", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
-      NOTE = { icon = " ", color = "hint", alt = { "INFO" } },
-      TEST = { icon = "⏲ ", color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
-    },
-    highlight = {
-      keyword = "fg",
-    },
-  }
-
-  opts = load_override(opts, "folke/todo-comments.nvim")
-  todo.setup(opts)
 end
 
 return M
