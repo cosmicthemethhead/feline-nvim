@@ -19,6 +19,24 @@ M.fidget = function()
   fidget.setup(opts)
 end
 
+M.illuminate = function()
+  local present, illuminate = pcall(require, "illuminate")
+
+  if not present then
+    return
+  end
+
+  local opts = {
+    filetypes_denylist = {
+      "NvimTree",
+      "TelescopePrompt",
+    },
+  }
+
+  opts = load_override(opts, "RRethy/vim-illuminate")
+  illuminate.configure(opts)
+end
+
 M.notify = function()
   local present, notify = pcall(require, "notify")
 

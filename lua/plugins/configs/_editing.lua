@@ -9,17 +9,16 @@ M.autopairs = function()
     return
   end
 
-  local options = {
+  local opts = {
     fast_wrap = {},
     disable_filetype = { "TelescopePrompt", "vim" },
   }
 
-  options = load_override(options, "windwp/nvim-autopairs")
-  autopairs.setup(options)
+  opts = load_override(opts, "windwp/nvim-autopairs")
+  autopairs.setup(opts)
 
   local cmp_autopairs = require "nvim-autopairs.completion.cmp"
   cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 end
-
 
 return M

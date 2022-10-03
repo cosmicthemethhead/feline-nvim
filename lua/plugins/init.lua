@@ -50,6 +50,14 @@ local plugins = {
       require("which-key").setup()
     end
   },
+  ["RRethy/vim-illuminate"] = {
+    setup = function()
+      require("core.lazy_load").on_file_open "vim-illuminate"
+    end,
+    config = function()
+      require("plugins.configs._ui").illuminate()
+    end
+  },
 
   --- syntax ---
   ["tikhomirov/vim-glsl"] = {
@@ -71,11 +79,6 @@ local plugins = {
   ["kylechui/nvim-surround"] = {
     config = function()
       require("nvim-surround").setup()
-    end
-  },
-  ["RRethy/vim-illuminate"] = {
-    config = function()
-      require('illuminate').configure()
     end
   },
 
