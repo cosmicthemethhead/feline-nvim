@@ -20,7 +20,7 @@ local prefabs = {
 
 local bin = ''
 
-devicons.set_icon {
+local opts =  {
   -- image
   ["ico"] = {
     icon = prefabs.img.icon,
@@ -83,3 +83,6 @@ devicons.set_icon {
     name = "css",
   },
 }
+
+opts = require("core.utils").load_override(opts, "lukas-reineke/indent-blankline.nvim")
+devicons.set_icon(opts)
