@@ -52,14 +52,14 @@ local config = {
 vim.diagnostic.config(config)
 
 local servers = {
-  "sumneko_lua",
-  "rust_analyzer",
-  "texlab",
   "clangd",
   "cssls",
   "cssmodules_ls",
   "emmet_ls",
   "html",
+  "rust_analyzer",
+  "sumneko_lua",
+  "texlab",
   "tsserver",
 }
 
@@ -76,21 +76,24 @@ for _, server in pairs(servers) do
     capabilities = handlers.capabilities,
   }
 
+  if server == "emmet_ls" then
+    local emmet_ls_opts = require "plugins.server_opts.emmet_ls"
+    opts = vim.tbl_deep_extend("force", emmet_ls_opts, opts)
+    goto continue
+  end
+
   if server == "sumneko_lua" then
-    local sumneko_lua_opts = require("plugins.server_opts.sumneko_lua")
+    local sumneko_lua_opts = require "plugins.server_opts.sumneko_lua"
     opts = vim.tbl_deep_extend("force", sumneko_lua_opts, opts)
+    goto continue
   end
 
   if server == "tsserver" then
     local tsserver_opts = require "plugins.server_opts.tsserver"
     opts = vim.tbl_deep_extend("force", tsserver_opts, opts)
+    goto continue
   end
 
-  if server == "emmet_ls" then
-    local emmet_ls_opts = require "plugins.server_opts.emmet_ls"
-    opts = vim.tbl_deep_extend("force", emmet_ls_opts, opts)
-  end
-
-  server = vim.split(server, "@")[1]
+  ::continue::
   lspconfig[server].setup(opts)
 end
