@@ -157,19 +157,18 @@ local plugins = {
       require "plugins.configs.lspconfig"
     end
   },
-  ["williamboman/mason-lspconfig.nvim"] = {
-    after = "mason.nvim",
-    config = function()
-      require("mason-lspconfig").setup()
-    end
-  },
   -- lsp installer
   ["williamboman/mason.nvim"] = {
     config = function()
       require "plugins.configs.mason"
     end
   },
-
+  ["williamboman/mason-lspconfig.nvim"] = {
+    after = "mason.nvim",
+    config = function()
+      require("mason-lspconfig").setup()
+    end
+  },
   --- treesitter ---
   ["nvim-treesitter/nvim-treesitter"] = {
     module = "nvim-treesitter",
@@ -227,19 +226,22 @@ local plugins = {
     end,
   },
 
+  --- rust ---
+  -- show crates data
+  ["Saecki/crates.nvim"] = {
+    event = { "BufRead Cargo.toml" },
+    config = function()
+      require("crates").setup()
+    end
+  },
+  ["simrat39/rust-tools.nvim"] = { },
+
   --- language specific plugins ---
   -- mardown preview
   ["iamcco/markdown-preview.nvim"] = {
     event = { "Filetype markdown" },
     run = "cd app && npm install",
     ft = "markdown",
-  },
-  -- show rust crates data
-  ["Saecki/crates.nvim"] = {
-    event = { "BufRead Cargo.toml" },
-    config = function()
-      require("crates").setup()
-    end
   },
   -- latex preview
   ["frabjous/knap"] = { ft = "tex", },
