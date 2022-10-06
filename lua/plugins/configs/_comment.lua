@@ -13,7 +13,6 @@ M.comment = function()
   nvim_comment.setup(opts)
 end
 
--- BUG: fix some colour stuff
 M.todo = function()
   local present, todo = pcall(require, "todo-comments")
 
@@ -35,9 +34,6 @@ M.todo = function()
       PERF = { icon = "祥", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
       NOTE = { icon = " ", color = "hint", alt = { "INFO" } },
       TEST = { icon = "⏲ ", color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
-    },
-    highlight = {
-      keyword = "fg",
     },
   }
 
