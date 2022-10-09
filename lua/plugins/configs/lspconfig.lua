@@ -55,6 +55,7 @@ local servers = {
   "clangd",
   "cssls",
   "cssmodules_ls",
+  "cmake",
   "emmet_ls",
   "html",
   "rust_analyzer",
