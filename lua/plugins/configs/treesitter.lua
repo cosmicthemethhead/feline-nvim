@@ -17,10 +17,6 @@ local options = {
     use_languagetree = true,
   },
 
-  indent = {
-    enable = true,
-  },
-
   rainbow = {
     enable = true,
     extended_mode = true, -- enable for html tags
