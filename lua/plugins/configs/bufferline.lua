@@ -18,7 +18,7 @@ bufferline.setup {
     truncate_names = true, -- whether or not tab names should be truncated
     tab_size = 18,
     -- The diagnostics indicator can be set to nil to keep the buffer name highlight but delete the highlighting
-    diagnostics_indicator = function(count, level, diagnostics_dict, context)
+    diagnostics_indicator = function(count, _, _, _)
       return '('..count..')'
     end,
     offsets = {
