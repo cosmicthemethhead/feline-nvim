@@ -15,10 +15,11 @@ local prefabs = {
   img = {
     icon = '',
     colour = colours.pink,
+  },
+  executable = {
+    icon = '',
   }
 }
-
-local bin = ''
 
 local opts =  {
   -- image
@@ -51,7 +52,7 @@ local opts =  {
   },
   ["md"] = { icon = '' },
 
-  ["bin"] = { icon = bin },
+  ["out"] = prefabs.executable;
 
   ["lua"] = {
     icon = '',
