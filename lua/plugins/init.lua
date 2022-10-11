@@ -149,6 +149,13 @@ local plugins = {
     end,
   },
 
+  --- lsp, dap, linter and formatter installer ---
+  ["williamboman/mason.nvim"] = {
+    config = function()
+      require "plugins.configs.mason"
+    end
+  },
+
   --- lsp ---
   ["neovim/nvim-lspconfig"] = {
     wants = "mason-lspconfig.nvim",
@@ -157,18 +164,13 @@ local plugins = {
       require "plugins.configs.lspconfig"
     end
   },
-  -- lsp installer
-  ["williamboman/mason.nvim"] = {
-    config = function()
-      require "plugins.configs.mason"
-    end
-  },
   ["williamboman/mason-lspconfig.nvim"] = {
     after = "mason.nvim",
     config = function()
       require("mason-lspconfig").setup()
     end
   },
+
   --- treesitter ---
   ["nvim-treesitter/nvim-treesitter"] = {
     module = "nvim-treesitter",
