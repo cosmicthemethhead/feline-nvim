@@ -9,7 +9,7 @@ end
 
 vim.g.theme_switcher_loaded = true
 
-local options = {
+local opts = {
   defaults = {
     vimgrep_arguments = {
       "rg",
@@ -118,12 +118,12 @@ local options = {
 }
 
 -- check for any override
-options = require("core.utils").load_override(options, "nvim-telescope/telescope.nvim")
-telescope.setup(options)
+opts = require("core.utils").load_override(opts, "nvim-telescope/telescope.nvim")
+telescope.setup(opts)
 
 -- load extensions
 pcall(function()
-  for _, ext in ipairs(options.extensions_list) do
+  for _, ext in ipairs(opts.extensions_list) do
     telescope.load_extension(ext)
   end
 end)

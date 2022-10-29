@@ -17,7 +17,7 @@ end
 
 local tree_cb = nvim_tree_config.nvim_tree_callback
 
-local options = {
+local opts = {
   filters = {
     dotfiles = false,
     exclude = { vim.fn.stdpath "config" .. "/lua/custom" },
@@ -102,5 +102,5 @@ local options = {
   },
 }
 
-vim.g.nvimtree_side = options.view.side
-nvim_tree.setup(options)
+vim.g.nvimtree_side = opts.view.side
+nvim_tree.setup(opts)

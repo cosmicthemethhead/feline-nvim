@@ -7,7 +7,7 @@ if not present then
   return
 end
 
-local options = {
+local opts = {
   ensure_installed = { "lua-language-server" }, -- not an option from mason.nvim
 
   ui = {
@@ -21,10 +21,10 @@ local options = {
   max_concurrent_installers = 10,
 }
 
-options = require("core.utils").load_override(options, "williamboman/mason.nvim")
+opts = require("core.utils").load_override(opts, "williamboman/mason.nvim")
 
 vim.api.nvim_create_user_command("MasonInstallAll", function()
-  vim.cmd("MasonInstall " .. table.concat(options.ensure_installed, " "))
+  vim.cmd("MasonInstall " .. table.concat(opts.ensure_installed, " "))
 end, {})
 
-mason.setup(options)
+mason.setup(opts)
