@@ -59,10 +59,11 @@ local plugins = {
     end
   },
 
-  --- syntax ---
-  ["tikhomirov/vim-glsl"] = {
-    ft = "glsl",
-  },
+  --- syntax highlighting ---
+  ["Fymyte/rasi.vim"]         = { ft = "rasi" },
+  ["elkowar/yuck.vim"]        = { ft = "yuck" },
+  ["tikhomirov/vim-glsl"]     = { ft = "glsl" },
+  ["baskerville/vim-sxhkdrc"] = { ft = "conf" },
 
   --- editing ---
   ["monaqa/dial.nvim"] = { },
@@ -246,7 +247,7 @@ local plugins = {
     ft = "markdown",
   },
   -- latex preview
-  ["frabjous/knap"] = { ft = "tex", },
+  ["frabjous/knap"] = { ft = "tex" },
 
   --- colour stuff ---
   -- colour viewer
