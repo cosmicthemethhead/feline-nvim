@@ -18,6 +18,18 @@ local prefabs = {
   },
   executable = {
     icon = '',
+  },
+  glsl = {
+    vert = {
+      icon = '',
+      color = colours.blue,
+      name = "glsl",
+    },
+    frag = {
+      icon = '',
+      color = colours.blue,
+      name = "glsl",
+    }
   }
 }
 
@@ -52,7 +64,10 @@ local opts =  {
   },
   ["md"] = { icon = '' },
 
+  -- executables
+  ["app"] = prefabs.executable;
   ["out"] = prefabs.executable;
+  ["exe"] = prefabs.executable;
 
   ["lua"] = {
     icon = '',
@@ -83,6 +98,10 @@ local opts =  {
     color = "#B1B2FF",
     name = "css",
   },
+
+  -- glsl
+  ["vert"] = prefabs.glsl.vert, ["vs"] = prefabs.glsl.vert,
+  ["frag"] = prefabs.glsl.frag, ["fs"] = prefabs.glsl.frag,
 }
 
 opts = require("core.utils").load_override(opts, "lukas-reineke/indent-blankline.nvim")
