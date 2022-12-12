@@ -248,6 +248,7 @@ local plugins = {
   },
   -- latex preview
   ["frabjous/knap"] = { ft = "tex" },
+  ["stevearc/vim-arduino"] = { ft = "arduino" };
 
   --- colour stuff ---
   -- colour viewer
